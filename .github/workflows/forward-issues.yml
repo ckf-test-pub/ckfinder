@@ -28,4 +28,6 @@ jobs:
           ACTION: ${{ github.event.action }}
           NUMBER: ${{ github.event.issue.number }}
           TARGET: ${{ vars.ISSUES_FORWARDER_TARGET_OWNER || 'cksource' }}/${{ vars.ISSUES_FORWARDER_TARGET_REPO || 'ckfinder' }}
-        run: gh workflow run issues-sync.yml --repo "$TARGET" -f "action=$ACTION" -f "number=$NUMBER"
+          REF: ${{ vars.ISSUES_FORWARDER_TARGET_REF || 'master' }}
+        # --ref is set by hand: without it gh looks up the default branch, which needs Contents permission.
+        run: gh workflow run issues-sync.yml --repo "$TARGET" --ref "$REF" -f "action=$ACTION" -f "number=$NUMBER"
