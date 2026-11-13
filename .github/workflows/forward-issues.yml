@@ -17,7 +17,7 @@ jobs:
       - uses: actions/create-github-app-token@v3
         id: token
         with:
-          app-id: ${{ vars.ISSUES_FORWARDER_APP_ID }}
+          client-id: ${{ vars.ISSUES_FORWARDER_CLIENT_ID }}
           private-key: ${{ secrets.ISSUES_FORWARDER_PRIVATE_KEY }}
           owner: ${{ vars.ISSUES_FORWARDER_TARGET_OWNER || 'cksource' }}
           repositories: ${{ vars.ISSUES_FORWARDER_TARGET_REPO || 'ckfinder' }}
